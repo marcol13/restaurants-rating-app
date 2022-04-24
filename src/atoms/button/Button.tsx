@@ -15,8 +15,8 @@ const buttonTypes = {
 };
 
 type AppProps = {
-  type: keyof TypesProps;
-  children: string;
+  type?: keyof TypesProps;
+  children: string | JSX.Element;
   className?: string;
   onClick?: () => void;
 };
@@ -24,7 +24,7 @@ type AppProps = {
 export const Button = ({ type, children, className, onClick }: AppProps) => {
   return (
     <button
-      className={classNames(buttonTypes[type], className)}
+      className={classNames(buttonTypes[type!], className, styles.button)}
       onClick={onClick}
     >
       {children}

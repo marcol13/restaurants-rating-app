@@ -1,31 +1,23 @@
 @import "../../assets/style/global.scss";
 
-@mixin universalButtonStyle{
-  border: none;
-	cursor: pointer;
-	outline: inherit;
-}
-
-@mixin buttonTextStyle{
-  @include universalButtonStyle();
+.button{
+  all: unset;
   color: white;
   padding: 5px 10px;
   font-size: $p-size;
   font-weight: $bold;
   border-radius: 10px;
+  cursor: pointer
 }
 
 .submit{
-  @include buttonTextStyle();
   background-color: $success;
 }
 
 .edit {
-  @include buttonTextStyle();
   background-color: $warning;
 }
 
 .delete {
-  @include buttonTextStyle();
   background-color: $error;
 }

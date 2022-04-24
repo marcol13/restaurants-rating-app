@@ -1,0 +1,18 @@
+@import "./../../assets/style/global.scss";
+
+.div{
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
+.input{
+    padding-right: 40px;
+    width: 100%;
+}
+
+.icon{
+    position: absolute;
+    top: 4px;
+    right: -40px;
+}

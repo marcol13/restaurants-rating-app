@@ -4,7 +4,7 @@ import styles from "./Input.module.scss";
 
 type AppProps = {
   value: string;
-  onChange: () => void;
+  onChange: (...args: any[]) => void;
   className?: string;
   placeholder?: string;
 };
