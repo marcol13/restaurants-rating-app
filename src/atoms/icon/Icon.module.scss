@@ -1,0 +1,25 @@
+@import "../../assets/style/global.scss";
+
+.small{
+    font-size: $p-size;
+}
+
+.medium{
+    font-size: $h3-size;
+}
+
+.large{
+    font-size: $h1-size;
+}
+
+.black{
+    color: $black;
+}
+
+.grey{
+    color: $grey001;
+}
+
+.gold{
+    color: $gold;
+}

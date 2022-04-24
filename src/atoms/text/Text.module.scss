@@ -1,0 +1,26 @@
+@import "./../../assets/style/global.scss";
+
+.h1{
+    font-size: $h1-size;
+    line-height: $h1-line-height;
+}
+
+.h2{
+    font-size: $h2-size;
+    line-height: $h2-line-height;
+}
+
+.h3{
+    font-size: $h3-size;
+    line-height: $h3-line-height;
+}
+
+.h4{
+    font-size: $h4-line-height;
+    line-height: $h4-line-height;
+}
+
+.p{
+    font-size: $p-size;
+    line-height: $p-line-height;
+}

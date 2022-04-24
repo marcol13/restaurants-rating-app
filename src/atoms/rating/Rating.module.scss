@@ -1,0 +1,21 @@
+@import "./../../assets/style/global.scss";
+
+.rating{
+    display: inline-block;
+    border-radius: 50%;
+    padding: 10px;
+    color: white;
+    font-size: $h3-size;
+}
+
+.good{
+    background-color: $success;
+}
+
+.moderate{
+    background-color: $warning;
+}
+
+.bad{
+    background-color: $error;
+}

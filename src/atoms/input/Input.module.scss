@@ -1,0 +1,10 @@
+@import "./../../assets/style/global.scss";
+
+.input{
+    color: $black;
+    font-size: $p-size;
+    padding: 10px;
+    border-bottom: 1px solid $black;
+    border-radius: 20px;
+    background-color: $grey003;
+}
