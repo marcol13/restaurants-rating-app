@@ -14,6 +14,13 @@ const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
 
 export const InputElement = Template.bind({});
 InputElement.args = {
-    value: "",
-    onChange: () => {},
+  value: "",
+  onChange: () => {},
+};
+
+export const TextFieldElement = Template.bind({});
+TextFieldElement.args = {
+  value: "",
+  onChange: () => {},
+  isTextField: true,
 };

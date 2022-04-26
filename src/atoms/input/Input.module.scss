@@ -1,11 +1,24 @@
 @import "./../../assets/style/global.scss";
 
-.input{
-    all: unset;
+.universal{
     color: $black;
     font-size: $p-size;
+    background-color: $grey003;
     padding: 10px;
     border: 1px solid $black;
+    box-shadow: none;
+}
+
+.text{
     border-radius: 20px;
-    background-color: $grey003;
+}
+
+.file::before{
+    display: block;
+    content: "Wybierz zdjęcie";
+
+}
+
+.textarea{
+    resize: none;
 }

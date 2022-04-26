@@ -18,14 +18,25 @@ type AppProps = {
   type?: keyof TypesProps;
   children: string | JSX.Element;
   className?: string;
-  onClick?: () => void;
+  onClick?: (prop: any) => void;
+  onMouseEnter?: (prop: any) => void;
+  onMouseLeave?: (prop: any) => void;
 };
 
-export const Button = ({ type, children, className, onClick }: AppProps) => {
+export const Button = ({
+  type,
+  children,
+  className,
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
+}: AppProps) => {
   return (
     <button
       className={classNames(buttonTypes[type!], className, styles.button)}
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseOut={onMouseLeave}
     >
       {children}
     </button>

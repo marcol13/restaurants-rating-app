@@ -1,18 +1,30 @@
 @import "./../../assets/style/global.scss";
 
 .div{
-    display: inline-block;
+    display: block;
     position: relative;
-    width: 100%;
 }
 
 .input{
-    padding-right: 40px;
+    padding-right: 35px !important;
     width: 100%;
+
+    &:focus{
+        padding-right: 10px !important;
+
+        + .icon{
+            opacity: 0;
+            transition: .5s all ease-in-out;
+        }
+    } 
 }
 
 .icon{
     position: absolute;
-    top: 4px;
-    right: -40px;
+    top: 5px;
+    right: 7px;
+    opacity: 1;
+    transition: .5s all ease-in-out;
 }
+
+
