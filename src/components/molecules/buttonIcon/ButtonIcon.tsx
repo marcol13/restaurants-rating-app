@@ -12,11 +12,15 @@ enum sizeIcon {
 type AppProps = {
   className?: string;
   size?: keyof typeof sizeIcon;
+  onClick?: () => void;
 };
 
-export const ButtonIcon = ({ className, size }: AppProps) => {
+export const ButtonIcon = ({ className, size, onClick }: AppProps) => {
   return (
-    <Button className={classNames(styles.buttonIcon, className)}>
+    <Button
+      className={classNames(styles.buttonIcon, className)}
+      onClick={onClick}
+    >
       <Icon iconType={"plus"} size={size} />
     </Button>
   );

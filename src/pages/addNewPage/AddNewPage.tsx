@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import styles from "./AddNewPage.module.scss";
 import global from "./../GlobalPages.module.scss";
 import classNames from "classnames";
@@ -12,6 +12,17 @@ export const AddNewPage = () => {
   const [restaurant, setRestaurant] = useState("");
   const [description, setDescription] = useState("");
   const [preview, setPreview] = useState<string>();
+  const [price, setPrice] = useState(0)
+  const [quality, setQuality] = useState(0)
+
+  const priceCallback = useCallback((price: number) => {
+    setPrice(price)
+  }, [])
+
+  const qualityCallback = useCallback((quality: number) => {
+    setQuality(quality)
+  }, [])
+
   const ref = useRef();
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +49,9 @@ export const AddNewPage = () => {
           className={styles.inputRestaurant}
         />
         <Link to="/">
-          <ButtonIcon size="large" />
+          <ButtonIcon size="large" onClick={() => {
+            console.log(`restaurant: ${restaurant}, description: ${description}, price: ${price}, quality: ${quality}, preview: ${preview}`)
+          }}/>
         </Link>
       </div>
       <div className={styles.secondRow}>
@@ -66,11 +79,11 @@ export const AddNewPage = () => {
         <div className={styles.ratingField}>
           <div>
             <Text type="h4">Cena</Text>
-            <RateStars />
+            <RateStars parrentCallback={priceCallback}/>
           </div>
           <div>
             <Text type="h4">Jakość</Text>
-            <RateStars />
+            <RateStars parrentCallback={qualityCallback}/>
           </div>
         </div>
       </div>

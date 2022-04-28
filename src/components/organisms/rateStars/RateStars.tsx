@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import styles from "./RateStars.module.scss";
 import classNames from "classnames";
 import { StarButton } from "../../molecules";
 
 type AppProps = {
   className?: string;
+  parrentCallback?: (_: any) => void
 };
 
 function getFirstFalse(array: boolean[]) {
@@ -14,7 +15,7 @@ function getFirstFalse(array: boolean[]) {
   return array.length;
 }
 
-export const RateStars = ({ className }: AppProps) => {
+export const RateStars = ({ className, parrentCallback }: AppProps) => {
   const [rating, setRating] = useState(new Array(5).fill(false));
   const [mouseRating, setMouseRating] = useState(rating);
   const [clickedRating, setClickedRating] = useState(rating);
@@ -32,11 +33,16 @@ export const RateStars = ({ className }: AppProps) => {
       setRating(falseArray);
       setMouseRating(falseArray);
       setClickedRating(falseArray);
+      if(typeof parrentCallback === "function")
+        parrentCallback(getFirstFalse(falseArray))
     } else {
       setRating(array);
       setMouseRating(array);
       setClickedRating(array);
+      if(typeof parrentCallback === "function")
+        parrentCallback(getFirstFalse(array))
     }
+    
   };
 
   const handleMouseEnter = (index: number) => {
