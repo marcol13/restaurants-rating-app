@@ -9,6 +9,7 @@ type AppProps = {
   restaurantName: string;
   descriptionText: string;
   rating: number;
+  className?: string;
 };
 
 export const ElementBar = ({
@@ -17,12 +18,13 @@ export const ElementBar = ({
   restaurantName,
   descriptionText,
   rating,
+  className
 }: AppProps) => {
   const [isDeleted, setIsDeleted] = useState(false);
 
   if (isDeleted) return null;
   return (
-    <div className={classNames(styles.container)}>
+    <div className={classNames(styles.container, className)}>
       <img src={imagePath} alt={altImage} className={styles.image} />
       <Text type={"h3"}>{restaurantName}</Text>
       <Text type={"p"}>{descriptionText}</Text>

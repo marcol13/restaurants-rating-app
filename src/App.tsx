@@ -1,14 +1,13 @@
-import React from 'react'
-import {Button} from "./atoms/button/Button"
-import "./assets/style/index.scss"
+import React from "react";
+import { MainPage } from "./pages/mainPage/MainPage";
+import "./assets/style/index.scss";
 
 function App() {
-
   return (
     <div className="App">
-      <Button type={"edit"}>Siema</Button>
+      <MainPage />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

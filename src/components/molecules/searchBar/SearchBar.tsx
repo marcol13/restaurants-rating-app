@@ -5,7 +5,7 @@ import {Input, Icon} from "./../../atoms"
 
 type AppProps = {
     value: string,
-    onChange: () => void,
+    onChange: (prop: any) => void,
     className?: string
 }
 

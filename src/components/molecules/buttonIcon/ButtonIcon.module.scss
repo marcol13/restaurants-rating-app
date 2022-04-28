@@ -1,7 +1,7 @@
 @import "./../../../assets/style/global.scss";
 
 .buttonIcon{
-    border: 2px solid $black;
-    border-radius: 0;
-    padding: 5px;
+    border: 2px solid $black !important;
+    border-radius: 0 !important;
+    padding: 5px !important;
 }
