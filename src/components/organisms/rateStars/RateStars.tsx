@@ -32,7 +32,6 @@ export const RateStars = ({ className }: AppProps) => {
       setRating(falseArray);
       setMouseRating(falseArray);
       setClickedRating(falseArray);
-      console.log("abcde");
     } else {
       setRating(array);
       setMouseRating(array);
@@ -44,18 +43,13 @@ export const RateStars = ({ className }: AppProps) => {
     const array = new Array(index + 1)
       .fill(true)
       .concat(new Array(4 - index).fill(false));
-    console.log(
-      `array ${getFirstFalse(array)} rating ${getFirstFalse(rating)}`
-    );
     if (getFirstFalse(array) > getFirstFalse(clickedRating)) {
-      console.log("abcdef");
       setMouseRating(rating);
       setRating(array);
     }
   };
 
   const handleMouseLeave = (index: number) => {
-    console.log(`leave ${index + 1}`);
     setRating(clickedRating);
   };
 

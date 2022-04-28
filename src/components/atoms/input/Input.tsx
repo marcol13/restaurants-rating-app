@@ -3,12 +3,13 @@ import classNames from "classnames";
 import styles from "./Input.module.scss";
 
 type AppProps = {
-  value: string;
+  value?: string;
   onChange: (...args: any[]) => void;
   className?: string;
   placeholder?: string;
   isTextField?: boolean;
   type?: keyof typeof inputType;
+  props?: any
 };
 
 const inputType = {
@@ -23,6 +24,7 @@ export const Input = ({
   placeholder,
   isTextField = false,
   type = "text",
+  ...props
 }: AppProps) => {
   // console.log(...type)
   return (
@@ -34,7 +36,8 @@ export const Input = ({
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          {...(type === "file" ? {accept: "image/png, image/jpeg"} : {})}
+          {...(type === "file" ? { accept: "image/png, image/jpeg" } : {})}
+          {...props}
         />
       )}
       {isTextField && (
@@ -42,9 +45,8 @@ export const Input = ({
           className={classNames(className, styles.textarea, styles.universal)}
           onChange={onChange}
           placeholder={placeholder}
-        >
-          {value}
-        </textarea>
+          value={value}
+        />
       )}
     </>
   );

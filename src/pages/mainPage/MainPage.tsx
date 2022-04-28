@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import styles from "./MainPage.module.scss";
+import global from "./../GlobalPages.module.scss";
 import classNames from "classnames";
 import { ElementBar } from "./../../components/organisms";
 import { ButtonIcon, SearchBar } from "./../../components/molecules";
 import { Input, Text } from "./../../components/atoms";
+import { Link } from "react-router-dom";
 
 export const MainPage = () => {
   const [search, setSearch] = useState("");
 
   return (
-    <div className={styles.container}>
+    <div className={global.container}>
       <div className={styles.nav}>
-        <SearchBar value={search} onChange={(e) => setSearch(e.target.value)} className={styles.searchBar} />
-        <ButtonIcon size="medium" />
+        <SearchBar
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className={styles.searchBar}
+        />
+        <Link to="/add">
+          <ButtonIcon size="medium" />
+        </Link>
       </div>
       <div className={styles.restarants}>
         <ElementBar
