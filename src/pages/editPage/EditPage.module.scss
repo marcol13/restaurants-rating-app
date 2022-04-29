@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+  }
+  
+  .firstRow {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .submit{
+      height: 100%;
+      width: 100px;
+  }
+  
+  .inputRestaurant {
+    width: 50%;
+  }
+  
+  .inputDescription {
+    width: 100%;
+    min-height: 200px;
+  }
+  
+  .thirdRow {
+    display: flex;
+    column-gap: 40px;
+    justify-content: space-between;
+  }
+  
+  .imageField {
+    display: flex;
+    align-items: center;
+  
+    img {
+      width: 175px;
+      height: 175px;
+      object-fit: cover;
+      margin-left: 100px;
+      border: 1px solid black;
+    }
+  }
+  
+  .ratingField {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    padding: 20px;
+    text-align: center;
+  }
+  

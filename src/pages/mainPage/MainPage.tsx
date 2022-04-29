@@ -30,6 +30,7 @@ export const MainPage = () => {
           descriptionText="Fajne jedzenie! Szkoda, że Kevin jeszcze nie dojechał..."
           rating={4}
           className={styles.itemBar}
+          elementId={1}
         />
       </div>
     </div>
