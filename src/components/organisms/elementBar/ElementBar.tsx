@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./ElementBar.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import { Text, Rating, Button } from "./../../atoms";
 
@@ -25,6 +25,17 @@ export const ElementBar = ({
 }: AppProps) => {
   const [isDeleted, setIsDeleted] = useState(false);
 
+  const navigate = useNavigate();
+
+  const deleteElement = async () => {
+    await fetch(`http://localhost:8002/restaurants/delete/${elementId}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    }).then((response) => console.log(response.json()));
+    setIsDeleted(true);
+    navigate("/");
+  };
+
   if (isDeleted) return null;
   return (
     <div
@@ -41,7 +52,7 @@ export const ElementBar = ({
         <Link to={`/edit/${elementId}`}>
           <Button type="edit">Edytuj</Button>
         </Link>
-        <Button type="delete" onClick={() => setIsDeleted(true)}>
+        <Button type="delete" onClick={deleteElement}>
           Usuń
         </Button>
       </div>

@@ -5,25 +5,43 @@ import classNames from "classnames";
 import { Input, Text } from "./../../components/atoms";
 import { ButtonIcon } from "../../components/molecules";
 import { RateStars } from "../../components/organisms";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import burger from "./../../assets/img/burger.jpg";
 
 export const AddNewPage = () => {
   const [restaurant, setRestaurant] = useState("");
   const [description, setDescription] = useState("");
   const [preview, setPreview] = useState<string>();
-  const [price, setPrice] = useState(0)
-  const [quality, setQuality] = useState(0)
+  const [price, setPrice] = useState(0);
+  const [quality, setQuality] = useState(0);
 
   const priceCallback = useCallback((price: number) => {
-    setPrice(price)
-  }, [])
+    setPrice(price);
+  }, []);
 
   const qualityCallback = useCallback((quality: number) => {
-    setQuality(quality)
-  }, [])
+    setQuality(quality);
+  }, []);
 
   const ref = useRef();
+
+  const navigate = useNavigate();
+
+  const createElement = async () => {
+    const data = {
+      name: restaurant,
+      description: description,
+      image: preview,
+      price: price,
+      quality: quality,
+    };
+    await fetch(`http://localhost:8002/restaurants/add`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    }).then((response) => console.log(response.json()));
+    navigate("../");
+  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.item(0);
@@ -48,11 +66,10 @@ export const AddNewPage = () => {
           placeholder="Nazwa restauracji"
           className={styles.inputRestaurant}
         />
-        <Link to="/">
-          <ButtonIcon size="large" onClick={() => {
-            console.log(`restaurant: ${restaurant}, description: ${description}, price: ${price}, quality: ${quality}, preview: ${preview}`)
-          }}/>
-        </Link>
+        <ButtonIcon
+          size="large"
+          onClick={createElement}
+        />
       </div>
       <div className={styles.secondRow}>
         <Input
@@ -79,11 +96,11 @@ export const AddNewPage = () => {
         <div className={styles.ratingField}>
           <div>
             <Text type="h4">Cena</Text>
-            <RateStars parrentCallback={priceCallback}/>
+            <RateStars parrentCallback={priceCallback} />
           </div>
           <div>
             <Text type="h4">Jakość</Text>
-            <RateStars parrentCallback={qualityCallback}/>
+            <RateStars parrentCallback={qualityCallback} />
           </div>
         </div>
       </div>
