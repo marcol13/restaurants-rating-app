@@ -4,13 +4,17 @@ import global from "./../GlobalPages.module.scss";
 import classNames from "classnames";
 import { ElementBar } from "./../../components/organisms";
 import { ButtonIcon, SearchBar } from "./../../components/molecules";
-import { Input, Text } from "./../../components/atoms";
+import { Input, Text, TextButton } from "./../../components/atoms";
 import { Link } from "react-router-dom";
 
 export const MainPage = () => {
   const [search, setSearch] = useState("");
   const [elements, setElements] = useState([]);
   const [showedElements, setShowedElements] = useState([]);
+  const [sortName, setSortName] = useState("►");
+  const [sortRank, setSortRank] = useState("►");
+
+  const controls = ["►", "▼", "▲"];
 
   const filterElements = (toFind: string) => {
     const re = new RegExp(`^${toFind}`, "gi");
@@ -19,6 +23,51 @@ export const MainPage = () => {
     });
 
     return temp;
+  };
+
+  const sortElements = (isName: boolean, isAscending: boolean) => {
+    if (isName) {
+      if (isAscending) {
+        elements.sort((a: { name: string }, b: { name: string }) => {
+          if (a.name > b.name) return 1;
+          else if (a.name < b.name) return -1;
+          return 0;
+        });
+      } else {
+        elements.sort((a: { name: string }, b: { name: string }) => {
+          if (a.name < b.name) return 1;
+          else if (a.name > b.name) return -1;
+          return 0;
+        });
+      }
+    } else {
+      if (isAscending) {
+        elements.sort(
+          (
+            a: { price: number; quality: number },
+            b: { price: number; quality: number }
+          ) => {
+            if ((a.price + a.quality) / 2 > (b.price + b.quality) / 2) return 1;
+            else if ((a.price + a.quality) / 2 < (b.price + b.quality) / 2)
+              return -1;
+            return 0;
+          }
+        );
+      } else {
+        elements.sort(
+          (
+            a: { price: number; quality: number },
+            b: { price: number; quality: number }
+          ) => {
+            if ((a.price + a.quality) / 2 < (b.price + b.quality) / 2) return 1;
+            else if ((a.price + a.quality) / 2 > (b.price + b.quality) / 2)
+              return -1;
+            return 0;
+          }
+        );
+      }
+    }
+    setElements(elements);
   };
 
   useEffect(() => {
@@ -47,6 +96,29 @@ export const MainPage = () => {
           <ButtonIcon size="medium" />
         </Link>
       </div>
+      <div className={styles.sortBar}>
+        <div></div>
+        <TextButton
+          onClick={() => {
+            let newControl =
+              controls[(controls.indexOf(sortName) + 1) % controls.length];
+            if (newControl !== "►")
+              sortElements(true, newControl == "▼" ? false : true);
+            setSortName(newControl);
+          }}
+        >{`Nazwa ${sortName}`}</TextButton>
+        <Text>{"Opis"}</Text>
+        <TextButton
+          onClick={() => {
+            let newControl =
+              controls[(controls.indexOf(sortRank) + 1) % controls.length];
+            if (newControl !== "►")
+              sortElements(false, newControl == "▼" ? false : true);
+            setSortRank(newControl);
+          }}
+        >{`Ocena ${sortRank}`}</TextButton>
+        <div></div>
+      </div>
       <div className={styles.restarants}>
         {showedElements.map(
           ({ image, name, description, price, quality, id }) => {
@@ -64,15 +136,6 @@ export const MainPage = () => {
             );
           }
         )}
-        <ElementBar
-          imagePath="https://d1e3z2jco40k3v.cloudfront.net/-/media/kamispl-2016/franks-pl/recipes_img/2000x1125/big_0003_pikantny_teksanski_burger.png?rev=f2980b5e47d3472da0142bc30113c968&vd=20200704T053827Z&hash=42F58857DE48407DFBF083BA2EFE70BA"
-          altImage="burger"
-          restaurantName="McDonald"
-          descriptionText="Fajne jedzenie! Szkoda, że Kevin jeszcze nie dojechał..."
-          rating={4}
-          className={styles.itemBar}
-          elementId={1}
-        />
       </div>
     </div>
   );

@@ -46,8 +46,10 @@ export const ElementBar = ({
         <img src={imagePath} alt={altImage} />
       </div>
       <Text type={"h3"}>{restaurantName}</Text>
-      <Text type={"p"}>{descriptionText}</Text>
-      <Rating value={rating} />
+      <Text type={"p"} className={styles.description}>{descriptionText}</Text>
+      <div className={styles.ratingDiv}>
+        <Rating value={rating} />
+      </div>
       <div className={styles.buttonDiv}>
         <Link to={`/edit/${elementId}`}>
           <Button type="edit">Edytuj</Button>

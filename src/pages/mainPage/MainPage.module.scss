@@ -1,18 +1,40 @@
-.nav{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    width: 100%;
-    margin-bottom: 30px;
+@import "./../../assets/style/global.scss";
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 15px;
 }
 
-.searchBar{
-    width: 100%;
+.searchBar {
+  width: 100%;
 }
 
-.itemBar{
-    width: 100%;
-    height: 125px;
-    margin-bottom: 5px;
+.itemBar {
+  width: 100%;
+  height: 125px;
+  margin-bottom: 5px;
+}
+
+.sortBar {
+  width: 100%;
+  background-color: $grey001;
+  border: 1px solid black;
+  // display: flex;
+  // align-items: center;
+  // justify-content: space-between;
+  // padding: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 3fr 0.5fr 0.5fr;
+  padding: 5px;
+  column-gap: 5px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 30px;
+  margin-bottom: 10px;
+  font-weight: $bold;
 }
