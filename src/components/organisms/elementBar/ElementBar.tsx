@@ -31,7 +31,9 @@ export const ElementBar = ({
       className={classNames(styles.container, className)}
       data-id={elementId}
     >
-      <img src={imagePath} alt={altImage} className={styles.image} />
+      <div className={styles.imageDiv}>
+        <img src={imagePath} alt={altImage} />
+      </div>
       <Text type={"h3"}>{restaurantName}</Text>
       <Text type={"p"}>{descriptionText}</Text>
       <Rating value={rating} />

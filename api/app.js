@@ -15,9 +15,27 @@ let sql = "";
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 
-app.post("/restaurants", (req, res) => {
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, Content-Length, X-Requested-With"
+  );
+  // allow preflight
+  if (req.method === "OPTIONS") {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
+
+app.post("/restaurants/add", (req, res) => {
   try {
     const { name, description, image, price, quality } = req.body;
     sql = `INSERT INTO restaurants(name, description, image, price, quality) VALUES(?,?,?,?,?)`;
@@ -44,6 +62,23 @@ app.get("/restaurants", cors(), (req, res) => {
 
       return res.json({ status: 200, data: rows, success: true });
     });
+  } catch (error) {
+    return res.json({ status: 400, success: false });
+  }
+});
+
+app.put("/restaurants/edit/:id", cors(), (req, res) => {
+  try {
+    console.log(req)
+    console.log("mam");
+    const id = +req.params.id;
+    const { name, description, image, price, quality } = req.body;
+    sql = `UPDATE restaurants SET name=?, description=?, image=?, price=?, quality=? WHERE id=?`;
+    db.run(sql, [name, description, image, price, quality, id], (err) => {
+      if (err) return res.json({ status: 300, success: false, error: err });
+    });
+    console.log(req.body)
+    return res.json({ status: 200, success: true });
   } catch (error) {
     return res.json({ status: 400, success: false });
   }

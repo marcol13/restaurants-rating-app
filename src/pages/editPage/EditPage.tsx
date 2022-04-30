@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { Input, Text, Button } from "../../components/atoms";
 import { ButtonIcon } from "../../components/molecules";
 import { RateStars } from "../../components/organisms";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate, Navigate } from "react-router-dom";
 import burger from "./../../assets/img/burger.jpg";
 
 export const EditPage = () => {
@@ -15,6 +15,8 @@ export const EditPage = () => {
   const [price, setPrice] = useState(0);
   const [quality, setQuality] = useState(0);
 
+  const navigate = useNavigate();
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -23,13 +25,13 @@ export const EditPage = () => {
     })
       .then((response) => response.json())
       .then((result) => result.data[0])
-      .then(({name, image, description, price, quality}) => {
-        setRestaurant(name)
-        setDescription(description)
-        setPreview(image)
-        setPrice(price)
-        setQuality(quality)
-      })
+      .then(({ name, image, description, price, quality }) => {
+        setRestaurant(name);
+        setDescription(description);
+        setPreview(image);
+        setPrice(price);
+        setQuality(quality);
+      });
   }, []);
 
   const priceCallback = useCallback((price: number) => {
@@ -42,7 +44,22 @@ export const EditPage = () => {
 
   const ref = useRef();
 
-  console.log(`${quality} ${price}`)
+  const sendRequest = () => {
+    const data = {
+      name: restaurant,
+      description: description,
+      image: preview,
+      price: price,
+      quality: quality,
+    };
+    console.log({data})
+    fetch(`http://localhost:8002/restaurants/edit/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    }).then((response) => console.log(response.json()));
+    navigate("../")
+  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.item(0);
@@ -67,9 +84,11 @@ export const EditPage = () => {
           placeholder="Nazwa restauracji"
           className={styles.inputRestaurant}
         />
-        <Link to="/">
-          <Button type="submit" className={styles.submit}>Zmień</Button>
-          {/* <ButtonIcon
+        {/* <Link to="/"> */}
+        <Button type="submit" className={styles.submit} onClick={sendRequest}>
+          Zmień
+        </Button>
+        {/* <ButtonIcon
             size="large"
             onClick={() => {
               console.log(
@@ -77,7 +96,7 @@ export const EditPage = () => {
               );
             }}
           /> */}
-        </Link>
+        {/* </Link> */}
       </div>
       <div className={styles.secondRow}>
         <Input
@@ -104,11 +123,14 @@ export const EditPage = () => {
         <div className={styles.ratingField}>
           <div>
             <Text type="h4">Cena</Text>
-            <RateStars parrentCallback={priceCallback} initialValue={price}/>
+            <RateStars parrentCallback={priceCallback} initialValue={price} />
           </div>
           <div>
             <Text type="h4">Jakość</Text>
-            <RateStars parrentCallback={qualityCallback} initialValue={quality}/>
+            <RateStars
+              parrentCallback={qualityCallback}
+              initialValue={quality}
+            />
           </div>
         </div>
       </div>
