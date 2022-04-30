@@ -1,19 +1,38 @@
-import React, { useState, useRef, useCallback } from "react";
-import styles from "./AddNewPage.module.scss";
+import React, { useState, useRef, useCallback, useEffect } from "react";
+import styles from "./EditPage.module.scss";
 import global from "./../GlobalPages.module.scss";
 import classNames from "classnames";
-import { Input, Text } from "./../../components/atoms";
+import { Input, Text, Button } from "../../components/atoms";
 import { ButtonIcon } from "../../components/molecules";
 import { RateStars } from "../../components/organisms";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, Navigate } from "react-router-dom";
 import burger from "./../../assets/img/burger.jpg";
 
-export const AddNewPage = () => {
+export const EditPage = () => {
   const [restaurant, setRestaurant] = useState("");
   const [description, setDescription] = useState("");
   const [preview, setPreview] = useState<string>();
   const [price, setPrice] = useState(0);
   const [quality, setQuality] = useState(0);
+
+  const navigate = useNavigate();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch(`http://localhost:8002/restaurants?id=${id}`, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((result) => result.data[0])
+      .then(({ name, image, description, price, quality }) => {
+        setRestaurant(name);
+        setDescription(description);
+        setPreview(image);
+        setPrice(price);
+        setQuality(quality);
+      });
+  }, []);
 
   const priceCallback = useCallback((price: number) => {
     setPrice(price);
@@ -25,9 +44,7 @@ export const AddNewPage = () => {
 
   const ref = useRef();
 
-  const navigate = useNavigate();
-
-  const createElement = async () => {
+  const sendRequest = () => {
     const data = {
       name: restaurant,
       description: description,
@@ -35,12 +52,13 @@ export const AddNewPage = () => {
       price: price,
       quality: quality,
     };
-    await fetch(`http://localhost:8002/restaurants/add`, {
-      method: "POST",
+    console.log({data})
+    fetch(`http://localhost:8002/restaurants/edit/${id}`, {
+      method: "PUT",
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" },
     }).then((response) => console.log(response.json()));
-    navigate("../");
+    navigate("../")
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,10 +84,19 @@ export const AddNewPage = () => {
           placeholder="Nazwa restauracji"
           className={styles.inputRestaurant}
         />
-        <ButtonIcon
-          size="large"
-          onClick={createElement}
-        />
+        {/* <Link to="/"> */}
+        <Button type="submit" className={styles.submit} onClick={sendRequest}>
+          Zmień
+        </Button>
+        {/* <ButtonIcon
+            size="large"
+            onClick={() => {
+              console.log(
+                `restaurant: ${restaurant}, description: ${description}, price: ${price}, quality: ${quality}, preview: ${preview}`
+              );
+            }}
+          /> */}
+        {/* </Link> */}
       </div>
       <div className={styles.secondRow}>
         <Input
@@ -96,11 +123,14 @@ export const AddNewPage = () => {
         <div className={styles.ratingField}>
           <div>
             <Text type="h4">Cena</Text>
-            <RateStars parrentCallback={priceCallback} />
+            <RateStars parrentCallback={priceCallback} initialValue={price} />
           </div>
           <div>
             <Text type="h4">Jakość</Text>
-            <RateStars parrentCallback={qualityCallback} />
+            <RateStars
+              parrentCallback={qualityCallback}
+              initialValue={quality}
+            />
           </div>
         </div>
       </div>
