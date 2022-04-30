@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const url = require("url");
-const { query } = require("express");
+const cors = require("cors");
 const sqlite = require("sqlite3").verbose();
 const db = new sqlite.Database(
   "./restaurants.db",
@@ -31,7 +31,7 @@ app.post("/restaurants", (req, res) => {
   }
 });
 
-app.get("/restaurants", (req, res) => {
+app.get("/restaurants", cors(), (req, res) => {
   try {
     sql = "SELECT * FROM restaurants";
     const queryObject = url.parse(req.url, true).query;
@@ -49,4 +49,4 @@ app.get("/restaurants", (req, res) => {
   }
 });
 
-app.listen(8001);
+app.listen(8002);
