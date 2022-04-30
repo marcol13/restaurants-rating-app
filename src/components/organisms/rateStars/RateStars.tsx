@@ -1,11 +1,12 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./RateStars.module.scss";
 import classNames from "classnames";
 import { StarButton } from "../../molecules";
 
 type AppProps = {
   className?: string;
-  parrentCallback?: (_: any) => void
+  parrentCallback?: (_: any) => void;
+  initialValue?: number;
 };
 
 function getFirstFalse(array: boolean[]) {
@@ -15,10 +16,32 @@ function getFirstFalse(array: boolean[]) {
   return array.length;
 }
 
-export const RateStars = ({ className, parrentCallback }: AppProps) => {
+export const RateStars = ({
+  className,
+  parrentCallback,
+  initialValue = 0,
+}: AppProps) => {
   const [rating, setRating] = useState(new Array(5).fill(false));
   const [mouseRating, setMouseRating] = useState(rating);
   const [clickedRating, setClickedRating] = useState(rating);
+
+  useEffect(() => {
+    setRating(
+      new Array(initialValue)
+        .fill(true)
+        .concat(new Array(5 - initialValue).fill(false))
+    );
+    setMouseRating(
+      new Array(initialValue)
+        .fill(true)
+        .concat(new Array(5 - initialValue).fill(false))
+    );
+    setClickedRating(
+      new Array(initialValue)
+        .fill(true)
+        .concat(new Array(5 - initialValue).fill(false))
+    );
+  }, [initialValue]);
 
   const onAction = (index: number) => {
     const array = new Array(index + 1)
@@ -33,16 +56,15 @@ export const RateStars = ({ className, parrentCallback }: AppProps) => {
       setRating(falseArray);
       setMouseRating(falseArray);
       setClickedRating(falseArray);
-      if(typeof parrentCallback === "function")
-        parrentCallback(getFirstFalse(falseArray))
+      if (typeof parrentCallback === "function")
+        parrentCallback(getFirstFalse(falseArray));
     } else {
       setRating(array);
       setMouseRating(array);
       setClickedRating(array);
-      if(typeof parrentCallback === "function")
-        parrentCallback(getFirstFalse(array))
+      if (typeof parrentCallback === "function")
+        parrentCallback(getFirstFalse(array));
     }
-    
   };
 
   const handleMouseEnter = (index: number) => {

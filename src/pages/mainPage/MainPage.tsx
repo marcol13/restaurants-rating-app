@@ -11,21 +11,6 @@ export const MainPage = () => {
   const [search, setSearch] = useState("");
   const [elements, setElements] = useState([]);
 
-  const getData = async (url = "http://localhost:8002/restaurants") => {
-    return (
-      fetch(url, {
-        method: "GET",
-      })
-        // .then((response) => {
-        //   if (response.status === 200) return response.body;
-        //   else throw new Error("Nie udało się pobrać danych");
-        // })
-        .then((response) => response.json())
-        .then((result) => setElements(result.data))
-        .catch((error) => console.log(error))
-    );
-  };
-
   useEffect(() => {
     fetch("http://localhost:8002/restaurants", {
       method: "GET",

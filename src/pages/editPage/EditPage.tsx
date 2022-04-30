@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import styles from "./EditPage.module.scss";
 import global from "./../GlobalPages.module.scss";
 import classNames from "classnames";
@@ -17,7 +17,20 @@ export const EditPage = () => {
 
   const { id } = useParams();
 
-  console.log({ id });
+  useEffect(() => {
+    fetch(`http://localhost:8002/restaurants?id=${id}`, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((result) => result.data[0])
+      .then(({name, image, description, price, quality}) => {
+        setRestaurant(name)
+        setDescription(description)
+        setPreview(image)
+        setPrice(price)
+        setQuality(quality)
+      })
+  }, []);
 
   const priceCallback = useCallback((price: number) => {
     setPrice(price);
@@ -28,6 +41,8 @@ export const EditPage = () => {
   }, []);
 
   const ref = useRef();
+
+  console.log(`${quality} ${price}`)
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.item(0);
@@ -89,11 +104,11 @@ export const EditPage = () => {
         <div className={styles.ratingField}>
           <div>
             <Text type="h4">Cena</Text>
-            <RateStars parrentCallback={priceCallback} />
+            <RateStars parrentCallback={priceCallback} initialValue={price}/>
           </div>
           <div>
             <Text type="h4">Jakość</Text>
-            <RateStars parrentCallback={qualityCallback} />
+            <RateStars parrentCallback={qualityCallback} initialValue={quality}/>
           </div>
         </div>
       </div>
