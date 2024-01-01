@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./ElementBar.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import { Text, Rating, Button } from "./../../atoms";
+import { apiURL } from "../../../utils/const";
 
 type AppProps = {
   elementId: number;
@@ -28,7 +29,7 @@ export const ElementBar = ({
   const navigate = useNavigate();
 
   const deleteElement = async () => {
-    await fetch(`http://localhost:8002/restaurants/delete/${elementId}`, {
+    await fetch(`${apiURL}/restaurants/delete/${elementId}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     }).then((response) => console.log(response.json()));

@@ -3,10 +3,10 @@ import styles from "./EditPage.module.scss";
 import global from "./../GlobalPages.module.scss";
 import classNames from "classnames";
 import { Input, Text, Button } from "../../components/atoms";
-import { ButtonIcon } from "../../components/molecules";
 import { RateStars } from "../../components/organisms";
-import { Link, useParams, useNavigate, Navigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import burger from "./../../assets/img/burger.jpg";
+import { apiURL } from "../../utils/const";
 
 export const EditPage = () => {
   const [restaurant, setRestaurant] = useState("");
@@ -20,7 +20,7 @@ export const EditPage = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:8002/restaurants?id=${id}`, {
+    fetch(`${apiURL}/restaurants?id=${id}`, {
       method: "GET",
     })
       .then((response) => response.json())
@@ -53,7 +53,7 @@ export const EditPage = () => {
       quality: quality,
     };
     console.log({data})
-    fetch(`http://localhost:8002/restaurants/edit/${id}`, {
+    fetch(`${apiURL}/restaurants/edit/${id}`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" },

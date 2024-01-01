@@ -5,6 +5,7 @@ import { ElementBar } from "./../../components/organisms";
 import { ButtonIcon, SearchBar } from "./../../components/molecules";
 import { Text, TextButton } from "./../../components/atoms";
 import { Link } from "react-router-dom";
+import { apiURL } from "../../utils/const";
 
 export const MainPage = () => {
 	const [search, setSearch] = useState("");
@@ -70,7 +71,7 @@ export const MainPage = () => {
 	};
 
 	useEffect(() => {
-		fetch("http://localhost:8002/restaurants", {
+		fetch(`${apiURL}/restaurants`, {
 			method: "GET",
 		})
 			.then((response) => response.json())

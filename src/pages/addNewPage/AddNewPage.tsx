@@ -5,8 +5,9 @@ import classNames from "classnames";
 import { Input, Text } from "./../../components/atoms";
 import { ButtonIcon } from "../../components/molecules";
 import { RateStars } from "../../components/organisms";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import burger from "./../../assets/img/burger.jpg";
+import { apiURL } from "../../utils/const";
 
 export const AddNewPage = () => {
   const [restaurant, setRestaurant] = useState("");
@@ -35,7 +36,7 @@ export const AddNewPage = () => {
       price: price,
       quality: quality,
     };
-    await fetch(`http://localhost:8002/restaurants/add`, {
+    await fetch(`${apiURL}/restaurants/add`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" },
