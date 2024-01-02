@@ -66,7 +66,7 @@ To get started with the restaurant rating app, follow these steps:
 2. Go to `api` directory: `cd api`
 3. Install the dependencies: `npm install`
 4. Start backend project: `npm start`
-5. Go to ui project directory: `cd ../ui`
+5. Go to `ui` project directory: `cd ../ui`
 6. Install frontend dependencies: `npm install`
 7. Run project: `npm run dev`
 
@@ -81,3 +81,15 @@ docker compose up
 By default, docker will run two containers on your computer:
 - Frontend on port 4173
 - Backend on port 8002
+
+## Storybook
+
+If you want to check out storybook for this project, follow this instruction:
+
+1. Clone the repository: `git clone https://github.com/marcol13/restaurants-rating-app`
+2. Go to `ui` directory: `cd ui`
+3. Install dependencies: `npm install`
+4. Run storybook: `npm run storybook`
+
+![image](https://github.com/marcol13/restaurants-rating-app/assets/56632321/61751150-6bb2-4fe9-8da9-79441e90d4ab)
+
