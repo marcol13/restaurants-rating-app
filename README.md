@@ -30,6 +30,21 @@ The Restaurant Rate App is a simple and intuitive application designed to simpli
 - Add image for restaurant info
 - Edit and delete restaurant ratings and reviews
 
+## Demo
+
+### Main page
+![image](https://github.com/marcol13/restaurants-rating-app/assets/56632321/be7856e1-8617-407e-8474-429e42bb7781)
+
+### Adding new restaurant
+![image](https://github.com/marcol13/restaurants-rating-app/assets/56632321/b9e766c8-a235-4f59-bb38-fb7a80e0d56c)
+
+### Sorting and filtering
+![image](https://github.com/marcol13/restaurants-rating-app/assets/56632321/55fe8c06-4889-4aaa-80a7-5ce4bd896ed9)
+
+### Editing data
+![image](https://github.com/marcol13/restaurants-rating-app/assets/56632321/9cc4b427-9457-458e-a606-2f450d82922f)
+
+
 ## Technologies Used
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
@@ -51,7 +66,7 @@ To get started with the restaurant rating app, follow these steps:
 2. Go to `api` directory: `cd api`
 3. Install the dependencies: `npm install`
 4. Start backend project: `npm start`
-5. Go to ui project directory: `cd ../ui`
+5. Go to `ui` project directory: `cd ../ui`
 6. Install frontend dependencies: `npm install`
 7. Run project: `npm run dev`
 
@@ -66,3 +81,15 @@ docker compose up
 By default, docker will run two containers on your computer:
 - Frontend on port 4173
 - Backend on port 8002
+
+## Storybook
+
+If you want to check out storybook for this project, follow this instruction:
+
+1. Clone the repository: `git clone https://github.com/marcol13/restaurants-rating-app`
+2. Go to `ui` directory: `cd ui`
+3. Install dependencies: `npm install`
+4. Run storybook: `npm run storybook`
+
+![image](https://github.com/marcol13/restaurants-rating-app/assets/56632321/61751150-6bb2-4fe9-8da9-79441e90d4ab)
+
