@@ -30,6 +30,21 @@ The Restaurant Rate App is a simple and intuitive application designed to simpli
 - Add image for restaurant info
 - Edit and delete restaurant ratings and reviews
 
+## Demo
+
+### Main page
+![image](https://github.com/marcol13/restaurants-rating-app/assets/56632321/be7856e1-8617-407e-8474-429e42bb7781)
+
+### Adding new restaurant
+![image](https://github.com/marcol13/restaurants-rating-app/assets/56632321/b9e766c8-a235-4f59-bb38-fb7a80e0d56c)
+
+### Sorting and filtering
+![image](https://github.com/marcol13/restaurants-rating-app/assets/56632321/55fe8c06-4889-4aaa-80a7-5ce4bd896ed9)
+
+### Editing data
+![image](https://github.com/marcol13/restaurants-rating-app/assets/56632321/9cc4b427-9457-458e-a606-2f450d82922f)
+
+
 ## Technologies Used
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
