@@ -10,7 +10,8 @@
     A simple application to rate your experience with restaurants!
     <br />
     <i>Project for Advanced Internet Applications</i>
-    <b>Date of that project: 🗓 01.05.2022 🗓</b>
+    <br/>
+    <b>Date of completion: 📆 01.05.2022 📆</b>
   </p>
 
 </div>
@@ -49,21 +50,19 @@ To get started with the restaurant rating app, follow these steps:
 1. Clone the repository: `git clone https://github.com/marcol13/restaurants-rating-app`
 2. Go to `api` directory: `cd api`
 3. Install the dependencies: `npm install`
-4. Create `.env` file like `.env.example`
-5. Start backend project: `npm start`
-6. Go to project root directory: `cd ..`
-7. Install frontend dependencies: `npm install`
-8. Create `.env` file like `.env.example`
-9. Run project: `npm run dev`
+4. Start backend project: `npm start`
+5. Go to ui project directory: `cd ../ui`
+6. Install frontend dependencies: `npm install`
+7. Run project: `npm run dev`
 
 ### With Docker
 
-In order to run the project in a docker container you must run a `docker daemon` on your computer and then type command:
+In order to run the project in a docker container, you must run a `docker daemon` on your computer and then type command:
 
 ```
 docker compose up 
 ```
 
-By default, docker will run two containers on you computer:
-- Frontent on port 4173
+By default, docker will run two containers on your computer:
+- Frontend on port 4173
 - Backend on port 8002
