@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./ElementBar.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import classNames from "classnames";
-import { Text, Rating, Button } from "./../../atoms";
+import { Text, Rating, Button } from "../../atoms";
 import { apiURL } from "../../../utils/const";
 
 type AppProps = {

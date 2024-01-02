@@ -1,7 +1,7 @@
 import React from "react"
 import styles from "./SearchBar.module.scss"
 import classNames from "classnames"
-import {Input, Icon} from "./../../atoms"
+import {Input, Icon} from "../../atoms"
 
 type AppProps = {
     value: string,

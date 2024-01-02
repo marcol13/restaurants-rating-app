@@ -7,6 +7,9 @@ export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), "");
 
 	return {
+		server: {
+			host: "0.0.0.0"
+		},
 		css: {
 			modules: {
 				generateScopedName: (name, filename) => {
@@ -19,6 +22,7 @@ export default defineConfig(({ mode }) => {
 		define: {
 			"process.env.REACT_APP_API_URL": JSON.stringify(env.REACT_APP_API_URL),
 		},
+		host: true,
 		plugins: [react()],
 	};
 });

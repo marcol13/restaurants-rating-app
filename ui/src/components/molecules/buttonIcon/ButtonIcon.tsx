@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./ButtonIcon.module.scss";
 import classNames from "classnames";
-import { Button, Icon } from "./../../atoms";
+import { Button, Icon } from "../../atoms";
 
 enum sizeIcon {
   small,

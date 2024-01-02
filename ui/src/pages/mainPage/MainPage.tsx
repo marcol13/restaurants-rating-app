@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import styles from "./MainPage.module.scss";
 import global from "./../GlobalPages.module.scss";
-import { ElementBar } from "./../../components/organisms";
-import { ButtonIcon, SearchBar } from "./../../components/molecules";
-import { Text, TextButton } from "./../../components/atoms";
+import { ElementBar } from "../../components/organisms";
+import { ButtonIcon, SearchBar } from "../../components/molecules";
+import { Text, TextButton } from "../../components/atoms";
 import { Link } from "react-router-dom";
 import { apiURL } from "../../utils/const";
 

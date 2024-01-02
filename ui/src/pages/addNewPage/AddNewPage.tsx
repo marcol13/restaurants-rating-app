@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from "react";
 import styles from "./AddNewPage.module.scss";
 import global from "./../GlobalPages.module.scss";
 import classNames from "classnames";
-import { Input, Text } from "./../../components/atoms";
+import { Input, Text } from "../../components/atoms";
 import { ButtonIcon } from "../../components/molecules";
 import { RateStars } from "../../components/organisms";
 import { useNavigate } from "react-router-dom";
